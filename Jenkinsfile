@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         registry = "dhivyadhub/pythondoc" 
-        registryCredential = 'dockerhub_id'    
+        registryCredential = 'dockerhub'    
     }
     stages {
         stage('git clone') {
