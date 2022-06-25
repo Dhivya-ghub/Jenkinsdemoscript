@@ -24,7 +24,7 @@ pipeline {
         stage('Login') {
 
             steps {
-                bat docker login -u ${env.DOCKERHUB_CREDENTIALS_USR} -p ${env.DOCKERHUB_CREDENTIALS_PSW}'
+                bat 'docker login -u ${env.DOCKERHUB_CREDENTIALS_USR} -p ${env.DOCKERHUB_CREDENTIALS_PSW}'
             }
         }
 
