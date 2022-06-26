@@ -1,10 +1,10 @@
 pipeline {
     agent any
-    //environment {
-         // registry = "dhivyadhub/pythondoc" 
-          //registryCredential = 'dockerhub'
+    environment {
+          registry = "dhivyadhub/pythondoc" 
+          registryCredential = 'dockerHub'
           //DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-    //}
+    }
     stages {
         stage('git clone') {
             steps {
@@ -22,10 +22,7 @@ pipeline {
         stage('Login') {
 
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]){ 
-                
-                bat "docker login -u %env.dockerHubUser% -p %env.dockerHubPassword%"
-                }
+                 bat 'echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin'
             }
         }
 
