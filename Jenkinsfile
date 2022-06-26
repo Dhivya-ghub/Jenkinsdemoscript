@@ -22,10 +22,10 @@ pipeline {
         stage('Login') {
 
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                 }
-                bat "docker login -u %env.DOCKERHUB_CREDENTIALS_USR% -p %env.DOCKERHUB_CREDENTIALS_PSW%"
-
+                bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                
             }
         }
 
