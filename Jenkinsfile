@@ -10,7 +10,7 @@ pipeline {
         stage('git clone') {
             steps {
                 // Get code from a GitHub repository
-                git url: 'https://github.com/Dhivya-ghub/Jenkinsdemo.git',
+                git url: 'https://github.com/Dhivya-ghub/Jenkinsdemo.git'
             }
         }
          stage('Build') {
