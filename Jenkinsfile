@@ -4,6 +4,10 @@ pipeline {
           registry = "dhivyadhub/pythondoc" 
           //DOCKERHUB_CREDENTIAL= 'dockerHub'
           DOCKERHUB_CREDENTIALS=credentials('dockerHub')
+          http_proxy=http://127.0.0.1:3128/
+          https_proxy=http://127.0.0.1:3128/
+          ftp_proxy=http://127.0.0.1:3128/
+          socks_proxy=socks://127.0.0.1:3128/
     }
     stages {
         stage('git clone') {
