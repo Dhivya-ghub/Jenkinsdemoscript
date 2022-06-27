@@ -2,8 +2,7 @@ pipeline {
     agent any
     environment {
           registry = "dhivyadhub/pythondoc" 
-          //DOCKERHUB_CREDENTIAL= 'dockerHub'
-          DOCKERHUB_CREDENTIALS=credentials('dockerHub')
+          DOCKERHUB_CREDENTIALS=credentials('Docker-Hub')
   
     }
     stages {
@@ -16,7 +15,7 @@ pipeline {
         }
          stage('Build') {
             steps {
-                bat 'docker build -t dhivyadhub/pythondoc:%BUILD_NUMBER% .'
+                bat 'docker build -t %registry%:%BUILD_NUMBER% .'
             }
         }
 
@@ -30,7 +29,7 @@ pipeline {
         stage('Push') {
 
             steps {
-                bat 'docker push dhivyadhub/pythondoc:%BUILD_NUMBER%'
+                bat 'docker push %registry%:%BUILD_NUMBER%'
             }
         }
     }
