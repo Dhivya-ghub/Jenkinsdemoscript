@@ -12,7 +12,7 @@ pipeline {
                 // Get code from a GitHub repository
                 git url: 'https://github.com/Dhivya-ghub/Jenkinsdemo.git',
             }
-         }
+        }
          stage('Build') {
             steps {
                 bat 'docker build -t dhivyadhub/pythondoc:%BUILD_NUMBER% .'
