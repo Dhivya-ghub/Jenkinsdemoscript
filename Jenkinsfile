@@ -10,7 +10,7 @@ pipeline {
         }
          stage('Build') {
             steps {
-                bat 'docker build -t %registry%:%BUILD_NUMBER% .'
+                bat 'docker build -t dhivyadhub/pythondoc:%BUILD_NUMBER% .'
             }
         }
 
@@ -26,7 +26,7 @@ pipeline {
         stage('Push') {
 
             steps {
-                bat 'docker push %registry%:%BUILD_NUMBER%'
+                bat 'docker push dhivyadhub/pythondoc:%BUILD_NUMBER%'
             }
         }
     }
