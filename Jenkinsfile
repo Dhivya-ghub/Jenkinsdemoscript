@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
           registry = "dhivyadhub/pythondoc" 
-          registryCredential = 'dockerHub'
+          DOCKERHUB_CREDENTIAL= 'dockerHub'
           //DOCKERHUB_CREDENTIALS=credentials('dockerhub')
     }
     stages {
