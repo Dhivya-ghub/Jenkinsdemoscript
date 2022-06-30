@@ -5,7 +5,7 @@ node {
                  credentialsId: 'github_creds'
         }
          stage('Build') {
-                bat 'docker build -t dhivyadhub/pythondoc:%BUILD_NUMBER% .'
+                sh 'docker build -t dhivyadhub/pythondoc:%BUILD_NUMBER% .'
         }
 }
        
