@@ -1,11 +1,11 @@
 URL_CURL_CHECK="localhost:5008/"
-VAR_A=$(curl "$URL_CURL_CHECK" | grep -o "HTTP/1.1 200 OK")
-VAR_B="HTTP/1.1 200 OK"
+VAR_A=$(curl "$URL_CURL_CHECK" | grep -o "200 OK")
+VAR_B="200 OK"
 echo
 if [ "$VAR_A" != "$VAR_B" ]; then
-    echo "Not equal ..."
+    echo "equal ..."
 else [ "$VAR_A" = "$VAR_B" ]
-    echo "It's a match"
+    echo "It's not a match"
 fi
 echo
 echo "Validate VARs: "
