@@ -15,6 +15,6 @@ node {
          def testImage = docker.build("${image}:${env.BUILD_NUMBER}", ".")
     }    
     stage('Run a container') {
-              sh 'docker run -d --name ${container} -p 5008:5000 ${image}:$BUILD_NUMBER'
+              sh 'docker run -d --name ${container} -p 5008:5000 ${testImage}:$BUILD_NUMBER'
     }
  }      
