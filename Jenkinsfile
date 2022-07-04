@@ -1,4 +1,3 @@
-def testImage = 'test-Image'
 node {
      checkout scm 
      environment {
