@@ -1,4 +1,5 @@
 def image = 'test-image'
+def container = 'python-cont'
 node {
      checkout scm 
      environment {
@@ -11,6 +12,9 @@ node {
                  sh 'docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true && docker rmi -f $(docker images -a -q) || true' 
     }     
     stage('Build') {
-         def testImage = docker.build("${image}:${env.BUILD_NUMBER}", ".")                   
+         def testImage = docker.build("${image}:${env.BUILD_NUMBER}", ".")
+         testImage.inside {
+              sh 'docker run -d --name ${container} -p 5008:5000 ${image}:$BUILD_NUMBER'
+         }
     }
  }      
