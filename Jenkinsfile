@@ -20,6 +20,9 @@ node {
     stage('container testing') {
               sh 'wget localhost:5008'
     } 
-   
+    stage('container testing') { 
+             withDockerRegistry(credentialsId: 'dockerHub', url: 'https://hub.docker.com/') {
+             // some block
+    }
  } 
 
