@@ -17,7 +17,7 @@ node {
     stage('Build') {
                  def testImage = docker.build("test-image", ".") 
                  testImage.inside 
-                     sh "docker run -d --name democontainer --publish 5005:5000 test-image:${BUILD_ID}"'
+                     sh "docker run -d --name democontainer --publish 5005:5000 test-image:${BUILD_ID}'
                  }
     }
  }      
