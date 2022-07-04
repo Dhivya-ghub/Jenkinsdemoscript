@@ -1,4 +1,4 @@
-def image = 'test-image'
+def image = 'dhivyadhub/test-image'
 def container = 'python-cont'
 node {
      checkout scm 
