@@ -1,3 +1,4 @@
+def testImage = 'test-Image'
 node {
      checkout scm 
      environment {
@@ -15,7 +16,6 @@ node {
                  credentialsId: 'github_creds'
     }
     stage('Build') {
-                 def testImage = 'test-Image'
                  def testImage = docker.build("test-image", ".") 
                  testImage.inside {
                      sh 'make test'
