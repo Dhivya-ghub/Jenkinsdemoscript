@@ -22,7 +22,8 @@ node {
     } 
     stage('container testing') { 
              withDockerRegistry(credentialsId: 'dockerHub', url: 'https://hub.docker.com/') {
-             docker.push("${image}:${env.BUILD_NUMBER}")
+              docker.push("${image}:${env.BUILD_NUMBER}")
+             }     
     }
  } 
 
