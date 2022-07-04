@@ -11,6 +11,6 @@ node {
     }     
     stage('Build') {
                  def testImage = docker.build(":${env.BUILD_NUMBER}", ".")  
-                 testImage.withRun '(('-p 5006:5000') --name my-container)'                 
+                  testImage.withRun('-p 5006:5000')                 
     }
  }      
