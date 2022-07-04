@@ -20,8 +20,8 @@ node {
     stage('container testing') {
               sh 'wget localhost:5008'
     } 
-    stage('container testing') { 
-             withDockerRegistry(credentialsId: 'dockerHub', url: 'https://hub.docker.com/') {
+    stage('container push') { 
+             withDockerRegistry(credentialsId: 'dockerHub', url: '') {
               docker.push("${image}:${env.BUILD_NUMBER}")
              }     
     }
