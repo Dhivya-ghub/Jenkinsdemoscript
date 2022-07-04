@@ -10,7 +10,6 @@ node {
                  sh 'docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true && docker rmi -f $(docker images -a -q) || true' 
     }     
     stage('Build') {
-                 def testImage = docker.build("test-image:${env.BUILD_NUMBER}", ".")  
-                  testImage.withRun('-p 5006:5000')                 
+                 def testImage = docker.build("test-image:${env.BUILD_NUMBER}", ".")                   
     }
  }      
