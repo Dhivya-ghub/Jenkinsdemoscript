@@ -18,7 +18,7 @@ node {
               docker.image("${image}:${env.BUILD_NUMBER}").run("--name ${container} -p 5008:5000")
     }
     stage('container testing') {
-              sh './script.sh'
+              sh './ sudo script.sh'
     } 
     stage('container push') { 
              withDockerRegistry(credentialsId: 'dockerHub', url: '') {
