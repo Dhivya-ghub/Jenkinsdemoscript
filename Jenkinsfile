@@ -18,7 +18,8 @@ node {
               docker.image("${image}:${env.BUILD_NUMBER}").run("--name ${container} -p 5008:5000")
     }
     stage('container testing') {
-              sh './ sudo script.sh'
+              sh "chmod +x -R ${env.WORKSPACE}"
+              sh './script.sh'
     } 
     stage('container push') { 
              withDockerRegistry(credentialsId: 'dockerHub', url: '') {
