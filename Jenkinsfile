@@ -15,7 +15,7 @@ node {
                docker.build("${image}:${env.BUILD_NUMBER}", ".")
     }    
     stage('Run a container') {
-              docker.image("${image}:${env.BUILD_NUMBER}").run("--name ${container} -p 5008:5000")
+              docker.image("${image}:${env.BUILD_NUMBER}").withRun("--name ${container} -p 5008:5000")
     }
     stage('container testing') {
               sh 'wget localhost:5008'
