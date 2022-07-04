@@ -18,12 +18,11 @@ node {
               docker.image("${image}:${env.BUILD_NUMBER}").run("--name ${container} -p 5008:5000")
     }
     stage('container testing') {
-              sh "chmod +x script.sh"
-              sh './script.sh'
+              sh 'chmod +x script.sh && ./script.sh'
     } 
     stage('container push') { 
              withDockerRegistry(credentialsId: 'dockerHub', url: '') {
-               customImage.push("${image}:${env.BUILD_NUMBER}")
+               customImage.push()
              }     
     }
  } 
