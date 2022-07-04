@@ -19,5 +19,4 @@ node {
                      sh 'make test'
                  }
         }
-}
-       
+ }      
