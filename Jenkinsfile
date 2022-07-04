@@ -15,9 +15,8 @@ node {
                  credentialsId: 'github_creds'
     }
     stage('Build') {
-                 def testImage = docker.build("test-image", ".") 
-                 testImage.inside 
+                 def testImage = docker.build("test-image", ".")  
                      sh "docker run -d --name democontainer --publish 5005:5000 test-image'
-                 }
+                 
     }
  }      
