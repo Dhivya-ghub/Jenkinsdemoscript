@@ -1,3 +1,5 @@
+def container-name = 'python-container'
+def image-name = 'python-image'
 node {
      checkout scm 
      environment {
@@ -15,8 +17,10 @@ node {
                  credentialsId: 'github_creds'
     }
     stage('Build') {
-                 def testImage = docker.build("test-image", ".")  
-                     sh "docker run -d --name democontainer -p 5005:5000'
+                 def testImage = docker.build(":${env.BUILD_NUMBER}", ".")  
+                 testImage.inside {
+                   sh 'docker run -d -p 5001:5000 --name ${container-name} ${image-name}:${env.BUILD_NUMBER}'
+                 }
                  
     }
  }      
