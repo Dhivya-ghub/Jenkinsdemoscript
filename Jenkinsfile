@@ -12,7 +12,7 @@ node {
                  sh 'docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true && docker rmi -f $(docker images -a -q) || true' 
     }     
     stage('Build') {
-               docker.build("${image}:${env.BUILD_NUMBER}", ".")
+               def customImage = docker.build("${image}:${env.BUILD_NUMBER}", ".")
     }    
     stage('Run a container') {
               docker.image("${image}:${env.BUILD_NUMBER}").run("--name ${container} -p 5008:5000")
@@ -23,7 +23,7 @@ node {
     } 
     stage('container push') { 
              withDockerRegistry(credentialsId: 'dockerHub', url: '') {
-                  sh 'docker push ${image}:${env.BUILD_NUMBER}'
+                  customImage.push()
              }     
     }
  } 
