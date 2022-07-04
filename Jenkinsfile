@@ -23,7 +23,7 @@ node {
     } 
     stage('container push') { 
              withDockerRegistry(credentialsId: 'dockerHub', url: '') {
-                  docker.image("${image}:${env.BUILD_NUMBER}")
+                  docker push ${image}:${env.BUILD_NUMBER}
              }     
     }
  } 
