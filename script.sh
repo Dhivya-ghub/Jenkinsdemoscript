@@ -7,7 +7,3 @@ if [ "$VAR_A" != "$VAR_B" ]; then
 else [ "$VAR_A" = "$VAR_B" ]
     echo "It's not a match"
 fi
-echo
-echo "Validate VARs: "
-echo "$VAR_A"
-echo "$VAR_B"
