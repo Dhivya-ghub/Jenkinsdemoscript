@@ -7,7 +7,6 @@ node {
         https_proxy = 'http://127.0.0.1:3128/'
         ftp_proxy = 'http://127.0.0.1:3128/'
         socks_proxy = 'socks://127.0.0.1:3128/'
-        DOCKERHUB_CREDENTIALS= credentials('dockerHub')
      } 
     stage ('Cleaning Local Images and Containers') {
                  sh 'docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true && docker rmi -f $(docker images -a -q) || true' 
@@ -23,13 +22,13 @@ node {
     } 
     stage('container push') { 
               echo "Pushing the image to docker hub"
-         def localImage = "${image}:${env.BUILD_NUMBER}"
-         def repositoryName = "dhivyadhub/${localImage}"
-         sh "docker tag ${localImage} ${repositoryName} "
-         withDockerRegistry(credentialsId: 'dockerHub', url: '') {
-            def images = docker.image("${repositoryName}");
-            images.push()
-         }
+              def localImage = "${image}:${env.BUILD_NUMBER}"
+              def repositoryName = "dhivyadhub/${localImage}"
+              sh "docker tag ${localImage} ${repositoryName} "
+              withDockerRegistry(credentialsId: 'dockerHub', url: '') {
+                 def images = docker.image("${repositoryName}");
+                 images.push()
+              }
     }
  } 
 
