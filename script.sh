@@ -1,5 +1,5 @@
 URL_CURL_CHECK="localhost:5008/"
-VAR_A=$(curl "$URL_CURL_CHECK" | grep "200 OK")
+VAR_A=$(curl "$URL_CURL_CHECK"  | grep -o "200 OK")
 VAR_B="200 OK"
 echo
 if [ "$VAR_A" != "$VAR_B" ]; then
