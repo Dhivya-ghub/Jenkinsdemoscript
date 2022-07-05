@@ -27,8 +27,8 @@ node {
          def repositoryName = "dhivyadhub/${localImage}"
          sh "docker tag ${localImage} ${repositoryName} "
          docker.withRegistry("", "dockerHubCredentials") {
-            def image = docker.image("${repositoryName}");
-            image.push()
+            def images = docker.image("${repositoryName}");
+            images.push()
          }
     }
  } 
