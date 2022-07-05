@@ -1,4 +1,4 @@
-def image = 'dhivyadhub/test-image'
+def image = 'script-image'
 def container = 'python-cont'
 node {
      checkout scm 
@@ -13,7 +13,7 @@ node {
                  sh 'docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true && docker rmi -f $(docker images -a -q) || true' 
     }     
     stage('Build') {
-               def customImage = docker.build("${image}:${env.BUILD_NUMBER}", ".")
+              docker.build("${image}:${env.BUILD_NUMBER}", ".")
     }    
     stage('Run a container') {
               docker.image("${image}:${env.BUILD_NUMBER}").run("--name ${container} -p 5008:5000")
@@ -22,7 +22,14 @@ node {
               sh 'chmod +x script.sh && ./script.sh'
     } 
     stage('container push') { 
-              sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin && docker push $image:$BUILD_NUMBER'
+              echo "Pushing the image to docker hub"
+         def localImage = "${image}:${env.BUILD_NUMBER}"
+         def repositoryName = "dhivyadhub/${localImage}"
+         sh "docker tag ${localImage} ${repositoryName} "
+         docker.withRegistry("", "dockerHubCredentials") {
+            def image = docker.image("${repositoryName}");
+            image.push()
+         }
     }
  } 
 
